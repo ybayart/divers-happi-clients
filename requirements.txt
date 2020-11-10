@@ -1,0 +1,8 @@
+sys
+os
+json
+requests
+getpass
+inquirer
+pygments
+pyfiglet
