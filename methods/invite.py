@@ -23,8 +23,8 @@ def choice_invite(g_data, create=True, invites=None, receiver=True):
 		invites_dict[index] = invite
 	try:
 		choices = sorted(list(invites_dict), reverse=True)
-		if create and g_data['me']['id'] == g_data['user']['id']:
-			choices = ['Create one'] + choices
+#		if create and g_data['me']['id'] == g_data['user']['id']:
+		choices = ['Create one'] + choices
 		if choices:
 			invite = print_inquirer('Select an invite', choices)
 		else:
@@ -77,8 +77,17 @@ def create_invite(g_data, slot_in=None):
 		if user_in == None:
 			to_ex = False
 	if to_ex:
+		try:
+			date_slot = datetime.datetime.strptime(slot_in['date'], '%Y-%m-%dT%H:%M:%SZ')
+		except:
+			try:
+				date_slot = datetime.datetime.strptime(slot_in['date'], '%Y-%m-%dT%H:%M:%S')
+			except:
+				date_slot = slot_in['date']
+				to_ex = False
+		if to_ex: date_slot = date_slot.strftime('%Y-%m-%d %H:%M')
 		print(yellow('-- Sum Up -- '))
-		print(yellow('| slot:'), blue("{} | {}".format(datetime.datetime.strptime(slot_in['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%Y-%m-%d %H:%M'), slot_in['activity'])))
+		print(yellow('| slot:'), blue("{} | {}".format(date_slot, slot_in['activity'])))
 		print(yellow('| user:'), blue(user_in['username']))
 		try:
 			resp = input('Informations are correct? [Y/n]: ')

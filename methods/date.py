@@ -23,8 +23,7 @@ def choice_time(time):
 		time_in = input("Time ({})> ".format(time.strftime("%H:%M")))
 		if time_in:
 			time_in = time_in.split(':')
-			if len(time_in) == 2:
-				time = time.replace(hour=int(time_in[0]), minute=int(time_in[1]))
+			time = time.replace(hour=int(time_in[0]), minute=int(time_in[1]))
 		return True, time
 	except KeyboardInterrupt:
 		print('\n')
