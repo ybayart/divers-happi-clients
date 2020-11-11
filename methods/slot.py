@@ -103,7 +103,7 @@ def create_slot(g_data):
 		except:
 			print(red('\nOperation cancelled\n'))
 
-def delete_slot(slot, g_data=None):
+def delete_slot(g_data, slot):
 	req = delete_happi("slots/{}/".format(slot['id']))
 	if req.status_code == 204:
 		print(green('Deleted'))
