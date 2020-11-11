@@ -61,6 +61,14 @@ def post_happi(path, data={}, base_token=token):
 	req = requests.post("{}{}".format(API_URL, path), headers={"Authorization": "Token {}".format(token)}, data = data)
 	return req
 
+def patch_happi(path, data={}, base_token=token):
+	global token
+
+	if base_token != None:
+		token = base_token
+	req = requests.patch("{}{}".format(API_URL, path), headers={"Authorization": "Token {}".format(token)}, data = data)
+	return req
+
 def delete_happi(path, base_token=token):
 	global token
 

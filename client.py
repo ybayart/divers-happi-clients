@@ -24,12 +24,12 @@ def get_credential():
 	print(yellow(g_data['f'].renderText("Hello {}".format(g_data['me']['username']))))
 
 actions = {
-	'User informations': {'index': 1, 'func': users},
-	'User friends': {'index': 2, 'func': friends},
-	'User slots': {'index': 3, 'func': slots},
-	'User invitations': {'index': 4, 'func': invites},
-	'Select me': {'index': 5, 'func': switch_me},
-	'Select other user': {'index': 6, 'func': switch_user},
+	'User informations': {'index': 1, 'func': user.users},
+	'User friends': {'index': 2, 'func': friend.friends},
+	'User slots': {'index': 3, 'func': slot.slots},
+	'User invitations': {'index': 4, 'func': invite.invites},
+	'Select me': {'index': 5, 'func': user.switch_me},
+	'Select other user': {'index': 6, 'func': user.switch_user},
 }
 
 def menu():
