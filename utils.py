@@ -45,7 +45,7 @@ def auth_happi(g_data):
 	if req.status_code == 200:
 		g_data['token'] = req.json()['token']
 
-def req_happi(path, base_token=token):
+def get_happi(path, base_token=token):
 	global token
 
 	if base_token != None:
@@ -53,11 +53,27 @@ def req_happi(path, base_token=token):
 	req = requests.get("{}{}".format(API_URL, path), headers={"Authorization": "Token {}".format(token)})
 	return req
 
+def post_happi(path, data={}, base_token=token):
+	global token
+
+	if base_token != None:
+		token = base_token
+	req = requests.post("{}{}".format(API_URL, path), headers={"Authorization": "Token {}".format(token)}, data = data)
+	return req
+
+def delete_happi(path, base_token=token):
+	global token
+
+	if base_token != None:
+		token = base_token
+	req = requests.delete("{}{}".format(API_URL, path), headers={"Authorization": "Token {}".format(token)})
+	return req
+
 def check_auth(g_data):
 	global token
 
 	token = g_data['token']
-	req = req_happi('me/')
+	req = get_happi('me/')
 
 	if req.status_code != 200:
 		print(red('Unable to connect with your credentials, please check & try again'))

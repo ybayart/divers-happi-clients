@@ -30,11 +30,11 @@ actions = {
 	'User invitations': {'index': 4, 'func': invites},
 	'Select me': {'index': 5, 'func': switch_me},
 	'Select other user': {'index': 6, 'func': switch_user},
-	'Exit': {'index': 7, 'func': exit},
 }
 
 def menu():
 	global g_data
+	print(yellow('Token user:'), blue(g_data['me']['username']))
 	print(yellow('Current selected user:'), blue(g_data['user']['username']))
 	try:
 		action = print_inquirer("Select a category", get_ordered_keys(actions))
@@ -45,8 +45,6 @@ def menu():
 	try:
 		if action in actions:
 			command = actions[action]['func']
-			if action == 'Exit':
-				command(0)
 			command(g_data)
 		else:
 			print(red('Select a valid action!'))
