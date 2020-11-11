@@ -7,5 +7,3 @@ RUN pip3 install --no-cache\
 	inquirer\
 	pygments\
 	pyfiglet
-
-ENTRYPOINT python3 /data/client.py
