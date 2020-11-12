@@ -7,7 +7,6 @@ import datetime
 import time
 import sys
 import websocket
-import notify2
 
 from pygments import highlight
 from pygments.lexers import JsonLexer
@@ -15,6 +14,10 @@ from pygments.formatters import TerminalFormatter
 from pyfiglet import Figlet
 from utils import *
 
+try:
+	import notify2
+except:
+	pass
 try:
 	import thread
 except ImportError:

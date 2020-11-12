@@ -1,8 +1,17 @@
 from imports import *
 
-def notification(title, content):
-	n = notify2.Notification(title, content, "notification-message-im")
-	n.show()
+def init():
+	try:
+		notify2.init('Happi client')
+	except:
+		pass
+
+def send(title, content):
+	try:
+		n = notify2.Notification(title, content, "notification-message-im")
+		n.show()
+	except:
+		pass
 
 def on_message(ws, message):
 	try:
@@ -28,7 +37,7 @@ def on_open(ws):
 
 def launch(g_data):
 #	websocket.enableTrace(True)
-	notify2.init("Happi client")
+	init()
 	while 42:
 		try:
 			ws = websocket.WebSocketApp("wss://happi.hexanyn.fr/ws/",
