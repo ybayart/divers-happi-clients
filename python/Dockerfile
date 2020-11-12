@@ -6,4 +6,5 @@ RUN pip3 install --no-cache\
 	requests\
 	inquirer\
 	pygments\
-	pyfiglet
+	pyfiglet\
+	websocket_client

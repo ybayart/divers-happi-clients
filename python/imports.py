@@ -6,8 +6,7 @@ import inquirer
 import datetime
 import time
 import sys
-import websockets
-import asyncio
+import websocket
 
 from pygments import highlight
 from pygments.lexers import JsonLexer
