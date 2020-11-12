@@ -55,6 +55,6 @@ def menu():
 
 if __name__ == "__main__":
 	get_credential()
-	ws.launch(g_data)
+	thread.start_new_thread(ws.launch, (g_data,))
 	while 42:
 		menu()

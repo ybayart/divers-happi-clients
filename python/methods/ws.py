@@ -5,36 +5,42 @@ def notification(title, content):
 	n.show()
 
 def on_message(ws, message):
-	if message != "pong":
-		data = json.dumps(message)
-		notification(message['title'], message['content'])
-
-def on_error(ws, error):
-	notification("Error", error)
-
-def on_close(ws):
-	nofitication("close", "### closed ###")
+	try:
+		data = json.loads(message)
+		if data['type'] == 'message':
+			notification(data['type'], data['content'])
+			ws.send(json.dumps({'type': 'confirm', 'id': data['id']}))
+	except:
+		pass
 
 def on_open(ws):
 	def run(*args):
-		while 42:
-			time.sleep(10)
-			ws.send("ping")
-		time.sleep(1)
-		ws.close()
+		try:
+			while 42:
+				time.sleep(10)
+				ws.send(json.dumps({'type': 'ping'}))
+			time.sleep(1)
+			ws.close()
+		except:
+			pass
 	thread.start_new_thread(run, ())
 
 
 def launch(g_data):
 #	websocket.enableTrace(True)
 	notify2.init("Happi client")
-	ws = websocket.WebSocketApp("wss://happi.hexanyn.fr/ws/",
-							  on_message = on_message,
-							  on_error = on_error,
-							  on_close = on_close,
-							  on_open = on_open,
-							  header=["Authorization: Token {}".format(g_data['token'])])
-	thread.start_new_thread(ws.run_forever, ())
+	while 42:
+		try:
+			ws = websocket.WebSocketApp("wss://happi.hexanyn.fr/ws/",
+									  on_message = on_message,
+									  on_open = on_open,
+									  header=["Authorization: Token {}".format(g_data['token'])])
+#			thread.start_new_thread(ws.run_forever, ())
+			ws.run_forever()
+#			sys.exit()
+		except:
+			pass
+		time.sleep(5)
 	
 #	running = True
 #	try:
