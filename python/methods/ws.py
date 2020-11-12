@@ -9,6 +9,7 @@ def init():
 def send(title, content):
 	try:
 		n = notify2.Notification(title, content, "notification-message-im")
+		n.set_urgency(notify2.URGENCY_CRITICAL)
 		n.show()
 	except:
 		pass
@@ -17,7 +18,7 @@ def on_message(ws, message):
 	try:
 		data = json.loads(message)
 		if data['type'] == 'message':
-			notification(data['type'], data['content'])
+			send(data['title'], data['content'])
 			ws.send(json.dumps({'type': 'confirm', 'id': data['id']}))
 	except:
 		pass
