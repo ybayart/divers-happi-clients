@@ -36,7 +36,6 @@ def menu():
 	global g_data
 	print(yellow('Token user:'), blue(g_data['me']['username']))
 	print(yellow('Current selected user:'), blue(g_data['user']['username']))
-	print(g_data['token'])
 	try:
 		action = print_inquirer("Select a category", get_ordered_keys(actions))
 	except TypeError:
@@ -56,5 +55,6 @@ def menu():
 
 if __name__ == "__main__":
 	get_credential()
+	ws.launch(g_data)
 	while 42:
 		menu()

@@ -3,3 +3,4 @@ inquirer
 pygments
 pyfiglet
 websocket_client
+notify2
