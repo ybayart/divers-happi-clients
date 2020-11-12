@@ -6,7 +6,8 @@ def notification(title, content):
 
 def on_message(ws, message):
 	if message != "pong":
-		notification("New message", message)
+		data = json.dumps(message)
+		notification(message['title'], message['content'])
 
 def on_error(ws, error):
 	notification("Error", error)
